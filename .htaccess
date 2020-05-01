@@ -1,0 +1,32 @@
+# URL_REWRITING
+# Options +FollowSymlinks
+RewriteEngine on
+# Pour que ça fonctione chez certains hébergeurs..
+# RewriteBase /
+
+
+### Pour la redirection de www.domaine.ext vers domaine.ext
+# Rediriger www.domaine.ext vers domaine.ext
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^(.*)$ http://%1/$1 [L,R=301]
+# Si l'URL commence par /backend, redirige vers le Backend
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{HTTP_HOST} !^www\.
+RewriteRule ^(?:backend|backend/|backend/)(.*)$ template/backend/index.php?view=$1 [QSA,L]
+# Si l'URL ne commence pas par /backend, on redirige vers le Frontend
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{HTTP_HOST} !^www\.
+RewriteRule ^(.*)$ template/frontend/index.php?view=$1 [QSA,L]
+
+# FIN -- URL_REWRITING
+
+# Désactiver l'indéxation des fichiers
+Options -Indexes
+
+# Activer/Désactiver les erreur PHP (on/off)
+php_flag display_errors off
+
+
+
+
+

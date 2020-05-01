@@ -3,7 +3,7 @@
     "backendOnline":true,
     "frontendOnline":false,
     "offlineMessage":"Le site est actuellement en maintenance.",
-    "backendPath":"path-for-connection",
+    "backendSpecialPath":"path-for-connection",
 
 
     "DbInfo":{

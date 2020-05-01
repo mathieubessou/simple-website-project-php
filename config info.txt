@@ -20,9 +20,9 @@
 
     # Permet de personaliser le chemin pour se connecter à l'administration (Backend).
     # Exemple: Si le chemin indiqué est path-for-connection, l'adresse pour se connecter sera:
-    # domain.ext/backend/path-for-connection
+    # domain.ext/backend/path-for-connection ou domain.ext/backend/path-for-connection/
     # Ceci est une sécurité supplémentaire. Si personne d'autre que l'administrateur connait ce chemin, il sera plus difficile de s'y connecter pour un autre utilisateur.
-    "backendConnectionPath":"path-for-connection",
+    "backendSpecialPath":"path-for-connection",
 
 
     # C'est ici que doivent êtres placé les informations de connexion à la base de données

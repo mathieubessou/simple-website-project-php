@@ -1,5 +1,18 @@
 <?php
 
+	/*
+		This file is part of the simple-website-project-php package.
+
+		Copyright (c) Mathieu BESSOU
+
+		MIT License
+
+		For the license information, view the LICENSE file distributed with this source code.
+	*/
+	
+
+	
+	
 class DbConnect
 {
 	protected static $instance;

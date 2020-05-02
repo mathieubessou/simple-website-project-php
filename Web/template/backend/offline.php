@@ -1,18 +1,3 @@
-<?php
-    if (preg_match('#^/backend/'.CONFIG['backendSpecialPath'].'(?:$|/.*)#', $_SERVER['REQUEST_URI'])) {
-        $isBackendSpecialPath = true;
-    }
-
-    if (... || !$isBackendSpecialPath) {
-        header('HTTP/1.0 404 Not Found');
-        require __DIR__ . '/../../template/frontend/online.php';
-        exit(0);
-    }
-    else {
-        header('HTTP/1.1 503 Service Unavailable');
-        header('Retry-After: 3600');
-    }
-?>
 <!DOCTYPE HTML>
 <html>
 	<head>

@@ -1,12 +1,3 @@
-<?php
-    if () {
-        header('HTTP/1.0 404 Not Found');
-    }
-    else {
-        header('HTTP/1.1 503 Service Unavailable');
-        header('Retry-After: 3600');
-    }
-?>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -18,7 +9,7 @@
 
     <body>
         <div>
-            <p><?=CONFIG['offlineMessage']?></p>
+            <p><?=ShowView()?></p>
         </div>
     </body>
 </html>

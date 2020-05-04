@@ -32,6 +32,9 @@ const CONFIG = [
         "SpecialPath" => "path-for-connection",
 
         // Définit le mot de passe pour accéder à l'administration (Il faut utiliser un mot de passe long pour plus de sécurité.)
+        // Attention! Il est conseillé de créer un mot de passe réservé exclusivement pour la connexion au backend de ce projet (site).
+        // Pour être valide, le mot de passe doit contenir au moins: 10 caractères et au moins 1 de chaque type suivant: minuscule, majuscule, chiffre.
+        // Après 3 tentatives de connexion échouée, l'accès au backend sera bloqué. Pour le débloquer, il faut supprimer le fichier lockedBackend qui se trouve à la racine du projet.
         "Password" => "password-for-connect-to-backend",
 
         // Définit la vue à afficher par défaut

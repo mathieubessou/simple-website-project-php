@@ -9,7 +9,7 @@
 
     <body>
         <div>
-            <p>Access to administration has been blocked</p>
+            <p><?=ShowBackendView()?></p>
         </div>
     </body>
 </html>

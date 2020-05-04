@@ -8,16 +8,21 @@
 		MIT License
 
 		For the license information, view the LICENSE file distributed with this source code.
-	*/
-	
+    */
+    
+    
+    
+    session_start();
 
-	
+	require_once FramePath . '/BackendLogin.php';
+    BackendLogin::setBackendLoginInfo(CONFIG['Backend']['Username'], CONFIG['Backend']['Password']);
 	
     const DefaultView = CONFIG['Backend']['DefaultView'];
     const IsOnline = CONFIG['Backend']['Online'];
     const IsFrontendOnline = CONFIG['Frontend']['Online'];
     const SpecialPath = CONFIG['Backend']['SpecialPath'];
 
+    
 
     // Si le chemin spécial est invalide
     $invalidePath = false;
@@ -59,11 +64,21 @@
 
         if (!IsOnline) {
             //echo CONFIG['Backend']['OfflineMessage']; n'est pas implémenté.
+            echo 'Access to administration has been blocked';
+        }
+        elseif (BackendLogin::isBackendLocked()) {
+            echo BackendLogin::LockedMessage;
+        }
+        elseif (!BackendLogin::loginInfoIsValid()) {
+            echo BackendLogin::WarningMessageForInvalidLoginInfo;
         }
         else
         {
             $viewPath;
-            if ($view == '') {
+            if (!BackendLogin::isLogged() && $view != 'login') {
+                header('location:/backend/' . SpecialPath . '/login');
+            }
+            elseif ($view == '') {
                 $viewPath = ViewsPath . '/Backend/' . DefaultView . '.php';
             }
             else {
@@ -76,7 +91,7 @@
 
     
     // Gestion du mode maintenance
-    if (IsOnline) {
+    if (IsOnline && !BackendLogin::isBackendLocked() && BackendLogin::loginInfoIsValid()) {
         require_once TemplatePath . '/backend/online.php';
     }
     else {

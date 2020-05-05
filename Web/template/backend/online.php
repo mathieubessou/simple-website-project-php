@@ -18,6 +18,6 @@
 	</head>
 
 	<body>
-		<?=ShowBackendView()?>
+		<?=ShowView()?>
 	</body>
 </html>

@@ -55,47 +55,46 @@
         }
         exit(0);
     }
-
-    
-
-    function ShowBackendView()
-    {
-        $view = preg_replace('#^'.SpecialPath.'/?#', '', $_GET['view']);
-
-        if (!IsOnline) {
-            //echo CONFIG['Backend']['OfflineMessage']; n'est pas implémenté.
-            echo 'Access to administration has been blocked';
-        }
-        elseif (BackendLogin::isBackendLocked()) {
-            echo BackendLogin::LockedMessage;
-        }
-        elseif (!BackendLogin::loginInfoIsValid()) {
-            echo BackendLogin::WarningMessageForInvalidLoginInfo;
-        }
-        else
-        {
-            $viewPath;
-            if (!BackendLogin::isLogged() && $view != 'login') {
-                header('location:/backend/' . SpecialPath . '/login');
-            }
-            elseif ($view == '') {
-                $viewPath = ViewsPath . '/Backend/' . DefaultView . '.php';
-            }
-            else {
-                $viewPath = ViewsPath . '/Backend/' . $view . '.php';
-            }
-            require $viewPath; // Affichage de la vue
-        }
-    }
-
-
-    
-    // Gestion du mode maintenance
-    if (IsOnline && !BackendLogin::isBackendLocked() && BackendLogin::loginInfoIsValid()) {
-        require_once TemplatePath . '/backend/online.php';
-    }
     else {
-        header('HTTP/1.1 503 Service Unavailable');
-        header('Retry-After: 3600');
-        require_once TemplatePath . '/backend/offline.php';
+        function ShowView()
+        {
+            $view = preg_replace('#^'.SpecialPath.'/?#', '', $_GET['view']);
+    
+            if (!IsOnline) {
+                //echo CONFIG['Backend']['OfflineMessage']; n'est pas implémenté.
+                echo 'Access to administration has been blocked';
+            }
+            elseif (BackendLogin::isBackendLocked()) {
+                echo BackendLogin::LockedMessage;
+            }
+            elseif (!BackendLogin::loginInfoIsValid()) {
+                echo BackendLogin::WarningMessageForInvalidLoginInfo;
+            }
+            else
+            {
+                $viewPath;
+                if (!BackendLogin::isLogged() && $view != 'login') {
+                    header('location:/backend/' . SpecialPath . '/login');
+                }
+                elseif ($view == '') {
+                    $viewPath = ViewsPath . '/Backend/' . DefaultView . '.php';
+                }
+                else {
+                    $viewPath = ViewsPath . '/Backend/' . $view . '.php';
+                }
+                require $viewPath; // Affichage de la vue
+            }
+        }
+    
+    
+        
+        // Gestion du mode maintenance
+        if (IsOnline && !BackendLogin::isBackendLocked() && BackendLogin::loginInfoIsValid()) {
+            require_once TemplatePath . '/backend/online.php';
+        }
+        else {
+            header('HTTP/1.1 503 Service Unavailable');
+            header('Retry-After: 3600');
+            require_once TemplatePath . '/backend/offline.php';
+        }
     }

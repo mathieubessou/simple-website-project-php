@@ -10,7 +10,7 @@
 
     <body>
         <div>
-            <p><?=ShowBackendView()?></p>
+            <p><?=ShowView()?></p>
         </div>
     </body>
 </html>

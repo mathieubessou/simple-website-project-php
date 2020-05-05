@@ -18,6 +18,8 @@ RewriteEngine on
 
 ### Pour la redirection de www.domaine.ext vers domaine.ext
 # Rediriger www.domaine.ext vers domaine.ext
+RewriteCond %{HTTPS} off
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 RewriteCond %{HTTP_HOST} ^www\..+$ [NC]
 RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 # Si l'URL commence par /backend, redirige vers le Backend

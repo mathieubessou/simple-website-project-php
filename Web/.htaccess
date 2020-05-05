@@ -18,8 +18,8 @@ RewriteEngine on
 
 ### Pour la redirection de www.domaine.ext vers domaine.ext
 # Rediriger www.domaine.ext vers domaine.ext
-RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
-RewriteRule ^(.*)$ http://%1/$1 [L,R=301]
+RewriteCond %{HTTP_HOST} ^www\..+$ [NC]
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 # Si l'URL commence par /backend, redirige vers le Backend
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{HTTP_HOST} !^www\.
@@ -27,7 +27,7 @@ RewriteRule ^backend/(.*)$ index.php?app=Backend&view=$1 [QSA,L]
 # Si l'URL ne commence pas par /backend, on redirige vers le Frontend
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{HTTP_HOST} !^www\.
-RewriteRule ^(.*)$ index.php?app=Frontend&view=$1 [QSA,L]
+RewriteRule (.*) index.php?app=Frontend&view=$1 [QSA,L]
 
 # FIN -- URL_REWRITING
 

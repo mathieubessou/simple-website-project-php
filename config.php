@@ -84,5 +84,10 @@ const CONFIG = [
         "Username" => "my_username",
         // Mot de passe de l'utilisateur.
         "Password" => "my_password"
-    ]
+    ],
+
+    // <!>ATTENTION<!>
+    // Ne doit pas être activé sur un serveur en production
+    // Active l'affichage des erreur PHP et PDO (connexion à la base de données)
+    "DebugMode" => false
 ];

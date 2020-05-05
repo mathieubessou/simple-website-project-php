@@ -4,7 +4,8 @@
 		CONFIG['DbInfo']['ServerName'],
 		CONFIG['DbInfo']['DbName'],
 		CONFIG['DbInfo']['Username'],
-		CONFIG['DbInfo']['Password']
+		CONFIG['DbInfo']['Password'],
+		CONFIG['DebugMode']
 	);*/
 ?>
 <!DOCTYPE HTML>

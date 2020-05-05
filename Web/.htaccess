@@ -33,11 +33,3 @@ RewriteRule ^(.*)$ index.php?app=Frontend&view=$1 [QSA,L]
 
 # Désactiver l'indéxation des fichiers
 Options -Indexes
-
-# Activer/Désactiver les erreur PHP (on/off)
-php_flag display_errors off
-
-
-
-
-

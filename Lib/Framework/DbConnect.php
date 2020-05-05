@@ -20,7 +20,7 @@ class DbConnect
 	protected function __construct() { }
 	protected function __clone() { }
 
-	public function newConnection(string $serverName, string $dbName, string $username, string $password)
+	public function newConnection(string $serverName, string $dbName, string $username, string $password, $debugMode = false)
 	{
 		try
 		{
@@ -31,7 +31,7 @@ class DbConnect
 		}
 		catch (Exception $e)
 		{
-			die('Error : ' . $e->getMessage());
+			if ($debugMode) die('Error : ' . $e->getMessage());
 		}
 		return self::$instance = $db;
 	}

@@ -7,6 +7,17 @@
 		CONFIG['DbInfo']['Password'],
 		CONFIG['DebugMode']
 	);*/
+
+	/* Récupère le chemin de la vue (dans l'URI)
+	$view = '';
+	$pos = strpos($_SERVER['REQUEST_URI'], '?');
+	if ($pos === false) {
+		$view = $_SERVER['REQUEST_URI'];
+	}
+	else {
+		$view = substr($_SERVER['REQUEST_URI'], 0, strpos($_SERVER['REQUEST_URI'], '?'));
+	}
+	*/
 ?>
 <!DOCTYPE HTML>
 <html>

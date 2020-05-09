@@ -18,8 +18,11 @@
 
     function ShowView()
     {
-        // Créer une redirection 404 si la vue n'existe pas ou que l'URI est DefaultView (pour ne faut pas dupliquer les pages  dans l'indexation...).
-        if ($_SERVER['REQUEST_URI'] != '/' && ($_GET['view'] == DefaultView || (!file_exists(ViewsPath . '/Frontend/' . $_GET['view'] . '.php')))) {
+        // Créer une redirection 404 si: 
+        // La vue n'existe pas
+        // L'URI est DefaultView (pour ne faut pas dupliquer les pages  dans l'indexation...).
+        // Un point d'intérogation (?) y est présent. (Plutôt que d'utiliser $_GET, créer des pages pour chaques paramètres. C'est une des limitation de ce projet pour rester le plus simple possible).
+        if ($_SERVER['REQUEST_URI'] != '/' && ($_GET['view'] == DefaultView || (!file_exists(ViewsPath . '/Frontend/' . $_GET['view'] . '.php')) || strpos($_SERVER['REQUEST_URI'], '?'))) {
             header('HTTP/1.0 404 Not Found');
             if (IsOnline) {
                 $viewPath = ViewsPath . '/Warning/404.php';

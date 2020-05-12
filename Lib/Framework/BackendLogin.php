@@ -68,13 +68,13 @@ class BackendLogin
 
     public static function getAttemptCounterValue()
     {
-        return file_get_contents(self::RootPath . '/Temp/attemptCounter');
+        return file_get_contents(self::RootPath . '/Temp/attemptCounter.txt');
     }
 
     public static function incrementAttemptCounter()
     {
         $acValue = 0;
-        if (file_exists(self::RootPath . '/Temp/attemptCounter')) {
+        if (file_exists(self::RootPath . '/Temp/attemptCounter.txt')) {
             $acValue = intval(self::getAttemptCounterValue());
         }
         $acValue++;
@@ -85,13 +85,13 @@ class BackendLogin
         }
         else {
             // Sauvegarde de l'incrémentation
-            file_put_contents(self::RootPath . '/Temp/attemptCounter', $acValue);
+            file_put_contents(self::RootPath . '/Temp/attemptCounter.txt', $acValue);
         }
     }
 
     public static function resetAttemptCounter()
     {
-        file_put_contents(self::RootPath . '/Temp/attemptCounter', 0);
+        file_put_contents(self::RootPath . '/Temp/attemptCounter.txt', 0);
     }
 
     public static function setBackendLoginInfo(string $username, string $password)

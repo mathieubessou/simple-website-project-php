@@ -42,9 +42,9 @@
 
 
 <form action="" method="post">
-    <label for="backendUsername">Username</label><br>
+    <label for="backendUsername">Username</label>
     <input type="text" id="backendUsername" name="backendUsername" required><br>
-    <label for="backendPassword">Password</label><br>
+    <label for="backendPassword">Password</label>
     <input type="password" id="backendPassword" name="backendPassword" required><br><br>
     <input type="submit" value="Se connecter">
 </form>

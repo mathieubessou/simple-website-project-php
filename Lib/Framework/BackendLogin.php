@@ -32,7 +32,7 @@ class BackendLogin
     {
         if (strtolower($username) == strtolower(self::$backendUsername) && $password == self::$backendPassword) {
             $_SESSION['isLogged'] = true;
-            self::resetAttemptCounter();
+            self::deleteAttemptCounter();
             return true;
         }
         else {
@@ -81,7 +81,7 @@ class BackendLogin
         if ($acValue == self::$maxAttempt) {
             // Verrouillage du Backend
             self::lockBackend();
-            self::resetAttemptCounter();
+            self::deleteAttemptCounter();
         }
         else {
             // Sauvegarde de l'incrémentation
@@ -89,9 +89,9 @@ class BackendLogin
         }
     }
 
-    public static function resetAttemptCounter()
+    public static function deleteAttemptCounter()
     {
-        file_put_contents(self::RootPath . '/Temp/attemptCounter.txt', 0);
+        unlink(self::RootPath . '/Temp/attemptCounter.txt');
     }
 
     public static function setBackendLoginInfo(string $username, string $password)

@@ -30,7 +30,7 @@ class BackendLogin
 
     public static function login(string $username, string $password)
     {
-        if ($username == self::$backendUsername && $password == self::$backendPassword) {
+        if (strtolower($username) == strtolower(self::$backendUsername) && $password == self::$backendPassword) {
             $_SESSION['isLogged'] = true;
             self::resetAttemptCounter();
             return true;
